@@ -9,6 +9,7 @@ ActiveAdmin.register Event do
   filter :date
   filter :release_date
   filter :updated_at
+  filter :license
 
   index do
     selectable_column
@@ -51,6 +52,7 @@ ActiveAdmin.register Event do
       row :date
       row :release_date
       row :metadata
+      row :license
     end
     table_for e.recordings.video.order('filename ASC') do
       column 'Video recordings' do |recording|
@@ -90,6 +92,7 @@ ActiveAdmin.register Event do
       f.input :tags_raw, as: :text
       f.input :date, hint: 'Actual date of the event'
       f.input :release_date, hint: 'Release date for the video recordings'
+      f.input :license, collection: License.order(:name)
     end
     f.inputs 'Files' do
       f.input :slug

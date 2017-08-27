@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   has_many :video_recordings, -> {
     where(html5: true, mime_type: MimeType::VIDEO)
   }, class_name: 'Recording'
+  has_one  :license
 
   after_initialize :generate_guid
 
